@@ -6,3 +6,5 @@
 
 * v1.1.0 [2019-10-25]: First major release.
   This version is known to contain some bugs.
+  
+* v1.1.0 [2019-11-20]: 

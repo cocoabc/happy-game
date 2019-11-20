@@ -269,4 +269,3 @@ class Switch:
         p1.hand, p2.hand = p2.hand, p1.hand
         UI.print_message('{} swaps hands with {}.'.format(p1.name, p2.name))
 
-

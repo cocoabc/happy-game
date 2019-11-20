@@ -1,5 +1,4 @@
 import switch
-
 from cards import Card
 
 
@@ -52,6 +51,7 @@ def test_setup_round__deals_cards():
     assert all(len(p.hand) == 7 for p in s.players)
     assert len(s.discards) == 1
     assert len(s.stock) == 52-len(s.players)*7-1
+
 
 
 def test_pick_up_card__pick_correct_number():
