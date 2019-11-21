@@ -13,9 +13,9 @@ class Switch:
 
     To run the game, create a Switch object and call its run_game method:
 
-    #>>> game = Switch()
-    #>>> game.run_game()
-    #Error: The two lines above should be outside the class so the program may run
+    >>> game = Switch()
+    >>> game.run_game()
+    Error: The two lines above should be outside the class so the program may run
 
 
     Switch objects have the following attributes, which are initialized
@@ -158,6 +158,9 @@ class Switch:
         sufficient, the maximum possible number of cards is picked.
         """
         # repeat n times
+        n += 1
+        # Error fixed with line above to count right number of cards.
+
         for i in range(1, n):
             # if no more card in stock pile
             if not self.stock:
@@ -272,5 +275,5 @@ class Switch:
         UI.print_message('{} swaps hands with {}.'.format(p1.name, p2.name))
 
 
-game = Switch()
-game.run_game()
+# game = Switch()
+# game.run_game()
