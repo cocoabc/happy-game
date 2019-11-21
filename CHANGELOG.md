@@ -8,7 +8,7 @@
   This version is known to contain some bugs.
   
 * v1.1.0 [2019-11-20]: Bug Fixing:
-    * Fixed a bug where the game didnt start (the code to create the object and the code to call a method were in the class)
-    * Fixed a bug where game drew 1 less card than required (pick_up_card method where python range() method had improper inputs and gave 1 less iteration than desired)
-    
+    * Fixed a bug where the game didnt start 
+    * Fixed a bug where game drew 1 less card than required 
+    * Fixed a bug where more than 52 cards were generated 
 
