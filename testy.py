@@ -1,8 +1,6 @@
-list = ['mei', 'you', 'smeb']
+list = []
 
-print((list[0:]))
-print((list[:--1]))
-print(list[1:])
-print(list[:1])
-print(list[:-1])
-print(list[-1:])
+def lis():
+    return not list
+
+print(lis())

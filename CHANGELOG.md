@@ -10,5 +10,9 @@
 * v1.1.0 [2019-11-20]: Bug Fixing:
     * Fixed a bug where the game didnt start 
     * Fixed a bug where game drew 1 less card than required 
-    * Fixed a bug where more than 52 cards were generated 
+    * Fixed a bug where more than 52 cards were generated
+    
+* v1.1.0 [2019-11-24]: Bug Fixing:
+    * Fixed a bug where cards of the same suit or value could not be discarded
+    
 
