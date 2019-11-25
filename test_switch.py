@@ -94,7 +94,7 @@ def test_can_discard__allows_ace():
     s = mock_setup_round([], '', '♣5')
     assert s.can_discard(Card('♢', 'A'))
     assert s.can_discard(Card('♡', 'A'))
-    assert s.can_discard(Card('♠', 'K'))
+    assert s.can_discard(Card('♠', 'A'))
 
 
 def test_can_discard__allows_queen():
@@ -103,113 +103,113 @@ def test_can_discard__allows_queen():
     assert s.can_discard(Card('♡', 'Q'))
     assert s.can_discard(Card('♠', 'Q'))
 
-
-def test_discard_card__sets_skip():
-    s = mock_setup_round(['♣4 ♡8', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-    s.discard_card(s.players[0], Card('♡', '8'))
-    assert s.skip
-
-
-def test_discard_card__sets_draw2():
-    s = mock_setup_round(['♣4 ♡2', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-    s.discard_card(s.players[0], Card('♡', '2'))
-    assert s.draw2
-
-
-def test_discard_card__sets_draw4():
-    s = mock_setup_round(['♣4 ♡Q', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-    s.discard_card(s.players[0], Card('♡', 'Q'))
-    assert s.draw4
-
-
-def test_discard_card__reverses():
-    s = mock_setup_round(['♣4 ♡K', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-    s.discard_card(s.players[0], Card('♡', 'K'))
-    assert s.direction == -1
-    s.discard_card(s.players[1], Card('♣', 'K'))
-    assert s.direction == 1
-
-
-def test_discard_card__swaps():
-    s = mock_setup_round(['♣4 ♡J', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-    s.discard_card(s.players[0], Card('♡', 'J'))
-    assert s.players[0].hand == [Card('♣', 'K'), Card('♣', '9')]
-    assert s.players[1].hand == [Card('♣', '4')]
-
-
-def test_get_normalized_hand_sizes():
-    """test hand size normalization"""
-    s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
-    assert s.get_normalized_hand_sizes(s.players[0]) == [1, 2, 3]
-    assert s.get_normalized_hand_sizes(s.players[1]) == [2, 3, 1]
-    assert s.get_normalized_hand_sizes(s.players[2]) == [3, 1, 2]
-
-    s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3', direction=-1)
-    assert s.get_normalized_hand_sizes(s.players[0]) == [1, 3, 2]
-    assert s.get_normalized_hand_sizes(s.players[1]) == [2, 1, 3]
-    assert s.get_normalized_hand_sizes(s.players[2]) == [3, 2, 1]
-
-
-def test_swap_hands():
-    """Test swapping of hands"""
-    s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
-    s.swap_hands(s.players[1], s.players[2])
-    assert len(s.players[1].hand) == 3
-    assert len(s.players[2].hand) == 2
-
-
-def test_run_player__adheres_to_skip_flag():
-    """run_player adheres to switch.skip"""
-    from copy import deepcopy
-    s = mock_setup_round(['', '', ''], '', '♣3', skip=True)
-    player = s.players[1]
-    hand_before = deepcopy(player.hand)
-    s.run_player(player)
-    assert player.hand == hand_before
-    assert not s.skip
-
-
-def test_run_player__adheres_to_draw2_flag():
-    """run_player adheres to switch.draw2"""
-    s = mock_setup_round(['', ''], '♢5 ♣6 ♣7', '♢3', draw2=True)
-    player = s.players[1]
-    s.run_player(player)
-    assert len(player.hand) == 2
-    assert not s.draw2
-
-
-def test_run_player__adheres_to_draw4_flag():
-    """run_player adheres to switch.draw4"""
-    s = mock_setup_round(['', ''], '♢5 ♣5 ♣6 ♣7 ♣8', '♢3', draw4=True)
-    player = s.players[1]
-    s.run_player(player)
-    assert len(player.hand) == 4
-    assert not s.draw4
-
-
-def test_run_player__returns_true_upon_win():
-    """run_player returns True if player wins"""
-    s = mock_setup_round(['♣4 ♣5', '♣9', '♣10'], '♣6 ♣7 ♣8', '♣3')
-    player = s.players[0]
-    assert not s.run_player(player)
-    assert s.run_player(player)
-
-
-def test_run_player__draws_card():
-    """run_player forces pick up if no discard possible"""
-    s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-    player = s.players[0]
-    s.run_player(player)
-    assert len(player.hand) == 2
-    assert len(s.stock) == 3
-    assert len(s.discards) == 1
-
-
-def test_run_player__draws_card_and_discards():
-    """run_player discards drawn card if possible"""
-    s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3')
-    player = s.players[0]
-    s.run_player(player)
-    assert len(player.hand) == 1
-    assert len(s.stock) == 3
-    assert len(s.discards) == 2
+#
+# def test_discard_card__sets_skip():
+#     s = mock_setup_round(['♣4 ♡8', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+#     s.discard_card(s.players[0], Card('♡', '8'))
+#     assert s.skip
+#
+#
+# def test_discard_card__sets_draw2():
+#     s = mock_setup_round(['♣4 ♡2', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+#     s.discard_card(s.players[0], Card('♡', '2'))
+#     assert s.draw2
+#
+#
+# def test_discard_card__sets_draw4():
+#     s = mock_setup_round(['♣4 ♡Q', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+#     s.discard_card(s.players[0], Card('♡', 'Q'))
+#     assert s.draw4
+#
+#
+# def test_discard_card__reverses():
+#     s = mock_setup_round(['♣4 ♡K', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+#     s.discard_card(s.players[0], Card('♡', 'K'))
+#     assert s.direction == -1
+#     s.discard_card(s.players[1], Card('♣', 'K'))
+#     assert s.direction == 1
+#
+#
+# def test_discard_card__swaps():
+#     s = mock_setup_round(['♣4 ♡J', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+#     s.discard_card(s.players[0], Card('♡', 'J'))
+#     assert s.players[0].hand == [Card('♣', 'K'), Card('♣', '9')]
+#     assert s.players[1].hand == [Card('♣', '4')]
+#
+#
+# def test_get_normalized_hand_sizes():
+#     """test hand size normalization"""
+#     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
+#     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 2, 3]
+#     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 3, 1]
+#     assert s.get_normalized_hand_sizes(s.players[2]) == [3, 1, 2]
+#
+#     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3', direction=-1)
+#     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 3, 2]
+#     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 1, 3]
+#     assert s.get_normalized_hand_sizes(s.players[2]) == [3, 2, 1]
+#
+#
+# def test_swap_hands():
+#     """Test swapping of hands"""
+#     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
+#     s.swap_hands(s.players[1], s.players[2])
+#     assert len(s.players[1].hand) == 3
+#     assert len(s.players[2].hand) == 2
+#
+#
+# def test_run_player__adheres_to_skip_flag():
+#     """run_player adheres to switch.skip"""
+#     from copy import deepcopy
+#     s = mock_setup_round(['', '', ''], '', '♣3', skip=True)
+#     player = s.players[1]
+#     hand_before = deepcopy(player.hand)
+#     s.run_player(player)
+#     assert player.hand == hand_before
+#     assert not s.skip
+#
+#
+# def test_run_player__adheres_to_draw2_flag():
+#     """run_player adheres to switch.draw2"""
+#     s = mock_setup_round(['', ''], '♢5 ♣6 ♣7', '♢3', draw2=True)
+#     player = s.players[1]
+#     s.run_player(player)
+#     assert len(player.hand) == 2
+#     assert not s.draw2
+#
+#
+# def test_run_player__adheres_to_draw4_flag():
+#     """run_player adheres to switch.draw4"""
+#     s = mock_setup_round(['', ''], '♢5 ♣5 ♣6 ♣7 ♣8', '♢3', draw4=True)
+#     player = s.players[1]
+#     s.run_player(player)
+#     assert len(player.hand) == 4
+#     assert not s.draw4
+#
+#
+# def test_run_player__returns_true_upon_win():
+#     """run_player returns True if player wins"""
+#     s = mock_setup_round(['♣4 ♣5', '♣9', '♣10'], '♣6 ♣7 ♣8', '♣3')
+#     player = s.players[0]
+#     assert not s.run_player(player)
+#     assert s.run_player(player)
+#
+#
+# def test_run_player__draws_card():
+#     """run_player forces pick up if no discard possible"""
+#     s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+#     player = s.players[0]
+#     s.run_player(player)
+#     assert len(player.hand) == 2
+#     assert len(s.stock) == 3
+#     assert len(s.discards) == 1
+#
+#
+# def test_run_player__draws_card_and_discards():
+#     """run_player discards drawn card if possible"""
+#     s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3')
+#     player = s.players[0]
+#     s.run_player(player)
+#     assert len(player.hand) == 1
+#     assert len(s.stock) == 3
+#     assert len(s.discards) == 2
