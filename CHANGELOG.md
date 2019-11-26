@@ -25,3 +25,5 @@
     method in switch()
     * Fixed second part of the tests for draw2 and draw4 flags where flags weren't being set back to false after drawing
     the cards
+    * Fixed issue in run_player() method where cards weren't being discarded properly by making sure card variable used
+    can_discard() method properly

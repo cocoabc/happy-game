@@ -186,30 +186,29 @@ def test_run_player__adheres_to_draw4_flag():
     assert len(player.hand) == 4
     assert not s.draw4
 
-#
-# def test_run_player__returns_true_upon_win():
-#     """run_player returns True if player wins"""
-#     s = mock_setup_round(['♣4 ♣5', '♣9', '♣10'], '♣6 ♣7 ♣8', '♣3')
-#     player = s.players[0]
-#     assert not s.run_player(player)
-#     assert s.run_player(player)
-#
-#
-# def test_run_player__draws_card():
-#     """run_player forces pick up if no discard possible"""
-#     s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-#     player = s.players[0]
-#     s.run_player(player)
-#     assert len(player.hand) == 2
-#     assert len(s.stock) == 3
-#     assert len(s.discards) == 1
-#
-#
-# def test_run_player__draws_card_and_discards():
-#     """run_player discards drawn card if possible"""
-#     s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3')
-#     player = s.players[0]
-#     s.run_player(player)
-#     assert len(player.hand) == 1
-#     assert len(s.stock) == 3
-#     assert len(s.discards) == 2
+
+def test_run_player__returns_true_upon_win():
+    """run_player returns True if player wins"""
+    s = mock_setup_round(['♣4 ♣5', '♣9', '♣10'], '♣6 ♣7 ♣8', '♣3')
+    player = s.players[0]
+    assert not s.run_player(player)
+    assert s.run_player(player)
+
+
+def test_run_player__draws_card():
+    """run_player forces pick up if no discard possible"""
+    s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+    player = s.players[0]
+    s.run_player(player)
+    assert len(player.hand) == 2
+    assert len(s.stock) == 3
+    assert len(s.discards) == 1
+
+def test_run_player__draws_card_and_discards():
+    """run_player discards drawn card if possible"""
+    s = mock_setup_round(['♣4', '♣9'], '♢5 ♢6 ♢7 ♡8', '♡3')
+    player = s.players[0]
+    s.run_player(player)
+    assert len(player.hand) == 1
+    assert len(s.stock) == 3
+    assert len(s.discards) == 2
