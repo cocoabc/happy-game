@@ -103,24 +103,24 @@ def test_can_discard__allows_queen():
     assert s.can_discard(Card('♡', 'Q'))
     assert s.can_discard(Card('♠', 'Q'))
 
-#
-# def test_discard_card__sets_skip():
-#     s = mock_setup_round(['♣4 ♡8', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-#     s.discard_card(s.players[0], Card('♡', '8'))
-#     assert s.skip
-#
-#
-# def test_discard_card__sets_draw2():
-#     s = mock_setup_round(['♣4 ♡2', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-#     s.discard_card(s.players[0], Card('♡', '2'))
-#     assert s.draw2
-#
-#
-# def test_discard_card__sets_draw4():
-#     s = mock_setup_round(['♣4 ♡Q', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-#     s.discard_card(s.players[0], Card('♡', 'Q'))
-#     assert s.draw4
-#
+
+def test_discard_card__sets_skip():
+    s = mock_setup_round(['♣4 ♡8', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+    s.discard_card(s.players[0], Card('♡', '8'))
+    assert s.skip
+
+
+def test_discard_card__sets_draw2():
+    s = mock_setup_round(['♣4 ♡2', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+    s.discard_card(s.players[0], Card('♡', '2'))
+    assert s.draw2
+
+
+def test_discard_card__sets_draw4():
+    s = mock_setup_round(['♣4 ♡Q', '♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+    s.discard_card(s.players[0], Card('♡', 'Q'))
+    assert s.draw4
+
 #
 # def test_discard_card__reverses():
 #     s = mock_setup_round(['♣4 ♡K', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
