@@ -17,3 +17,4 @@
     class Switch()
     * Fixing test case for ace value (test_can_discard__allows_ace) by changing value "K" to "A"
     * Changes made to discard_card() in switch.py to make sure the game properly skips players or draws cards
+    * Changes made to discard_card() in switch.py to make sure the game properly changes direction

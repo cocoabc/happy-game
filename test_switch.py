@@ -121,28 +121,28 @@ def test_discard_card__sets_draw4():
     s.discard_card(s.players[0], Card('♡', 'Q'))
     assert s.draw4
 
-#
-# def test_discard_card__reverses():
-#     s = mock_setup_round(['♣4 ♡K', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-#     s.discard_card(s.players[0], Card('♡', 'K'))
-#     assert s.direction == -1
-#     s.discard_card(s.players[1], Card('♣', 'K'))
-#     assert s.direction == 1
-#
-#
-# def test_discard_card__swaps():
-#     s = mock_setup_round(['♣4 ♡J', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
-#     s.discard_card(s.players[0], Card('♡', 'J'))
-#     assert s.players[0].hand == [Card('♣', 'K'), Card('♣', '9')]
-#     assert s.players[1].hand == [Card('♣', '4')]
-#
-#
-# def test_get_normalized_hand_sizes():
-#     """test hand size normalization"""
-#     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
-#     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 2, 3]
-#     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 3, 1]
-#     assert s.get_normalized_hand_sizes(s.players[2]) == [3, 1, 2]
+
+def test_discard_card__reverses():
+    s = mock_setup_round(['♣4 ♡K', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+    s.discard_card(s.players[0], Card('♡', 'K'))
+    assert s.direction == -1
+    s.discard_card(s.players[1], Card('♣', 'K'))
+    assert s.direction == 1
+
+
+def test_discard_card__swaps():
+    s = mock_setup_round(['♣4 ♡J', '♣K ♣9'], '♢5 ♢6 ♢7 ♢8', '♡3')
+    s.discard_card(s.players[0], Card('♡', 'J'))
+    assert s.players[0].hand == [Card('♣', 'K'), Card('♣', '9')]
+    assert s.players[1].hand == [Card('♣', '4')]
+
+
+def test_get_normalized_hand_sizes():
+    """test hand size normalization"""
+    s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
+    assert s.get_normalized_hand_sizes(s.players[0]) == [1, 2, 3]
+    assert s.get_normalized_hand_sizes(s.players[1]) == [2, 3, 1]
+    assert s.get_normalized_hand_sizes(s.players[2]) == [3, 1, 2]
 #
 #     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3', direction=-1)
 #     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 3, 2]
