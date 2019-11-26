@@ -23,3 +23,5 @@
     * Fixed hand size normalization by making sure the player indexes were in the right order according to direction
     * Fixed first part of the tests for draw2 and draw4 flags which were giving error by isolating part of run_player() 
     method in switch()
+    * Fixed second part of the tests for draw2 and draw4 flags where flags weren't being set back to false after drawing
+    the cards
