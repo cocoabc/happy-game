@@ -21,3 +21,5 @@
 
 * v1.1.0 [2019-11-26]: Bug Fixing:
     * Fixed hand size normalization by making sure the player indexes were in the right order according to direction
+    * Fixed first part of the tests for draw2 and draw4 flags which were giving error by isolating part of run_player() 
+    method in switch()

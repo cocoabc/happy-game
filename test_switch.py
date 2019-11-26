@@ -148,44 +148,44 @@ def test_get_normalized_hand_sizes():
     assert s.get_normalized_hand_sizes(s.players[0]) == [1, 3, 2]
     assert s.get_normalized_hand_sizes(s.players[1]) == [2, 1, 3]
     assert s.get_normalized_hand_sizes(s.players[2]) == [3, 2, 1]
-#
-#
-# def test_swap_hands():
-#     """Test swapping of hands"""
-#     s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
-#     s.swap_hands(s.players[1], s.players[2])
-#     assert len(s.players[1].hand) == 3
-#     assert len(s.players[2].hand) == 2
-#
-#
-# def test_run_player__adheres_to_skip_flag():
-#     """run_player adheres to switch.skip"""
-#     from copy import deepcopy
-#     s = mock_setup_round(['', '', ''], '', '♣3', skip=True)
-#     player = s.players[1]
-#     hand_before = deepcopy(player.hand)
-#     s.run_player(player)
-#     assert player.hand == hand_before
-#     assert not s.skip
-#
-#
-# def test_run_player__adheres_to_draw2_flag():
-#     """run_player adheres to switch.draw2"""
-#     s = mock_setup_round(['', ''], '♢5 ♣6 ♣7', '♢3', draw2=True)
-#     player = s.players[1]
-#     s.run_player(player)
-#     assert len(player.hand) == 2
-#     assert not s.draw2
-#
-#
-# def test_run_player__adheres_to_draw4_flag():
-#     """run_player adheres to switch.draw4"""
-#     s = mock_setup_round(['', ''], '♢5 ♣5 ♣6 ♣7 ♣8', '♢3', draw4=True)
-#     player = s.players[1]
-#     s.run_player(player)
-#     assert len(player.hand) == 4
-#     assert not s.draw4
-#
+
+
+def test_swap_hands():
+    """Test swapping of hands"""
+    s = mock_setup_round(['♣4', '♣K ♣9', '♡J ♢5 ♢6'], '♢7 ♢8', '♡3')
+    s.swap_hands(s.players[1], s.players[2])
+    assert len(s.players[1].hand) == 3
+    assert len(s.players[2].hand) == 2
+
+
+def test_run_player__adheres_to_skip_flag():
+    """run_player adheres to switch.skip"""
+    from copy import deepcopy
+    s = mock_setup_round(['', '', ''], '', '♣3', skip=True)
+    player = s.players[1]
+    hand_before = deepcopy(player.hand)
+    s.run_player(player)
+    assert player.hand == hand_before
+    assert not s.skip
+
+
+def test_run_player__adheres_to_draw2_flag():
+    """run_player adheres to switch.draw2"""
+    s = mock_setup_round(['', ''], '♢5 ♣6 ♣7', '♢3', draw2=True)
+    player = s.players[1]
+    s.special_event(player)
+    assert len(player.hand) == 2
+    assert not s.draw2
+
+
+def test_run_player__adheres_to_draw4_flag():
+    """run_player adheres to switch.draw4"""
+    s = mock_setup_round(['', ''], '♢5 ♣5 ♣6 ♣7 ♣8', '♢3', draw4=True)
+    player = s.players[1]
+    s.special_event(player)
+    assert len(player.hand) == 4
+    assert not s.draw4
+
 #
 # def test_run_player__returns_true_upon_win():
 #     """run_player returns True if player wins"""
