@@ -18,3 +18,6 @@
     * Fixing test case for ace value (test_can_discard__allows_ace) by changing value "K" to "A"
     * Changes made to discard_card() in switch.py to make sure the game properly skips players or draws cards
     * Changes made to discard_card() in switch.py to make sure the game properly changes direction
+
+* v1.1.0 [2019-11-26]: Bug Fixing:
+    * Fixed hand size normalization by making sure the player indexes were in the right order according to direction
