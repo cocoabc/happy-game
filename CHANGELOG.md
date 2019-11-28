@@ -29,4 +29,8 @@
     can_discard() method properly
 
 * v1.1.0 [2019-11-28]: Bug Fixing:
-    * Added a missing bracket in SmartAI() function in players.py 
+    * Added a missing bracket in SmartAI() function in players.py
+    * In file switch.py, run_round method: Changed equation of variable 'i' inside if/else statement to work properly
+        *   i = i+self.direction % len(self.players) ---to---> i = (i+self.direction) % (len(self.players))
+    
+    (skip test)
