@@ -279,5 +279,5 @@ class Switch:
         UI.print_message('{} swaps hands with {}.'.format(p1.name, p2.name))
 
 
-# game = Switch()
-# game.run_game()
+game = Switch()
+game.run_game()

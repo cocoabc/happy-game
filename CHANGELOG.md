@@ -27,3 +27,6 @@
     the cards
     * Fixed issue in run_player() method where cards weren't being discarded properly by making sure card variable used
     can_discard() method properly
+
+* v1.1.0 [2019-11-28]: Bug Fixing:
+    * Added a missing bracket in SmartAI() function in players.py 
