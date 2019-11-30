@@ -15,22 +15,39 @@
 * v1.1.0 [2019-11-24]: Bug Fixing:
     * Fixed a bug where cards of the same suit or value could not be discarded by fixing the can_discard() method in
     class Switch()
-    * Fixing test case for ace value (test_can_discard__allows_ace) by changing value "K" to "A"
-    * Changes made to discard_card() in switch.py to make sure the game properly skips players or draws cards
-    * Changes made to discard_card() in switch.py to make sure the game properly changes direction
+    * In file test_switch.py, discard_card() method: Fixing test case for ace value (test_can_discard__allows_ace) by changing value "K" to "A"
+    * In file switch.py, discard_card() method: Changes made to discard_card() in switch.py to make sure the game properly skips players or draws cards
+    * In file switch.py, discard_card() method: Changes made to self.direction variable in if statement when suit 'K'
+    card is discarded to make sure the game properly changes direction
+        * self.direction *= 1 ➡ self.direction *= -1
 
 * v1.1.0 [2019-11-26]: Bug Fixing:
-    * Fixed hand size normalization by making sure the player indexes were in the right order according to direction
-    * Fixed first part of the tests for draw2 and draw4 flags which were giving error by isolating part of run_player() 
-    method in switch()
-    * Fixed second part of the tests for draw2 and draw4 flags where flags weren't being set back to false after drawing
-    the cards
-    * Fixed issue in run_player() method where cards weren't being discarded properly by making sure card variable used
-    can_discard() method properly
+    * In file switch.py, get_normalized_hand_sizes() method: Fixed hand size normalization by making sure the player 
+    hand sizes were returned in the right order according to direction and turn order by changing range of index to
+    change order of concatenation
+        * sizes[:idx] + sizes[idx:] ➡ sizes[idx:] + sizes[:idx]
+    
+    * In file switch.py, run_player() method: Fixed first part of the tests for draw2 and draw4 flags which were giving
+     an error because a card was discarded after correct number of cards were drawn by putting the related code into
+     the special_event() method
+        * ***Note:** didn't use return after if statement to fix it because the README.md is unclear whether the player
+        should be able to continue his turn after drawing cards or not so I decided to make it continue his turn*
+    
+    * In file switch.py, special_event() method: Fixed skip test and second error from the tests for draw2 and draw4 flags 
+    where flags weren't being set back to false after drawing the cards by changing equality operator to assigment
+    operator. 
+        * self.skip == False ➡ self.skip = False
+        * self.draw2 == False ➡ self.draw2 = False
+        * self.draw4 == False ➡ self.draw4 = False
+    
+    * In file switch.py, run_player() method: Fixed issue where cards weren't being discarded properly by adding
+    brackets and an argument to the self.can_discard() method call in the "discardable" variable
+        * [card for card in player.hand if self.can_discard(card)] ➡
+        [card for card in player.hand if self.can_discard(card)]
 
 * v1.1.0 [2019-11-28]: Bug Fixing:
-    * Added a missing bracket in SmartAI() function in players.py
-    * In file switch.py, run_round method: Changed equation of variable 'i' inside if/else statement to work properly
-        *   i = i+self.direction % len(self.players) ---to---> i = (i+self.direction) % (len(self.players))
+    * In file: player.py, SmartAI() function: Added a missing bracket at the end of sorted_choices variable
+    * In file switch.py, run_round() method: Changed equation of variable 'i' inside if/else statement to work properly
+        *   i = i+self.direction % len(self.players) ➡ i = (i+self.direction) % (len(self.players))
     
     (skip test)
