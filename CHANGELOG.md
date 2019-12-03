@@ -8,9 +8,11 @@
   This version is known to contain some bugs.
   
 * v1.1.0 [2019-11-20]: Bug Fixing:
-    * Fixed a bug where the game didnt start by moving class and method callers outside class Switch()
-    * Fixed a bug where game drew 1 less card than required by adding 1 to iterator
-    * Fixed a bug where more than 52 cards were generated because of an extra Suit in card generator
+    * In file switch.py, Fixed a bug where the game didnt start by moving class initializer and method callers at the bottom outside class Switch()
+    * In file switch.py, pick_up_card() method: Fixed a bug where game drew 1 less card than required by adding 1 to n when iterating using range() method.
+        * ```Added ➡ n += 1```
+    * In file cards.py, class Card: Fixed a bug where more than 52 cards were generated because of an extra Suit in the values.
+        * ```values = '2 3 4 5 6 7 8 9 10 J Q K A A'.split() ➡ values = '2 3 4 5 6 7 8 9 10 J Q K A'.split()```
     
 * v1.1.0 [2019-11-24]: Bug Fixing:
     * In file switch.py, can_discard() method: Fixed a bug where cards of the same suit or value could not be discarded 
@@ -25,7 +27,7 @@
         * ```elif card.value == '4': ➡ elif card.value == '2':```
     * In file switch.py, discard_card() method: Changes made to self.direction variable in if statement when suit 'K'
     card is discarded to make sure the game properly changes direction
-        * ```self.direction *= 1 ➡ self.direction *= -1`````
+        * ```self.direction *= 1 ➡ self.direction *= -1```
 
 * v1.1.0 [2019-11-26]: Bug Fixing:
     * In file switch.py, get_normalized_hand_sizes() method: Fixed hand size normalization by making sure the player 
@@ -55,4 +57,5 @@
     * In file switch.py, run_round() method: Changed equation of variable 'i' inside if/else statement to work properly
         *   ``` i = i+self.direction % len(self.players) ➡ i = (i+self.direction) % (len(self.players))```
     
-    (skip test)
+* In file switch.py, special_event() method, added return for skip, draw2 and draw4 to skip the turn after turn skipped or drawn cards
+
