@@ -57,5 +57,5 @@
     * In file switch.py, run_round() method: Changed equation of variable 'i' inside if/else statement to work properly
         *   ``` i = i+self.direction % len(self.players) ➡ i = (i+self.direction) % (len(self.players))```
     
-* In file switch.py, special_event() method, added return for skip, draw2 and draw4 to skip the turn after turn skipped or drawn cards
-
+    * In file switch.py, special_event() method, added return for skip, draw2 and draw4 to skip the turn after turn skipped or drawn cards
+    
